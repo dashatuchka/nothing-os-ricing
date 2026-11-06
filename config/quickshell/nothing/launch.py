@@ -8,10 +8,18 @@ import sys
 
 
 def main():
-    config = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config"))
-    settings = json.loads((config / "nothing-niri/settings.json").read_text())
+    config = Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config")
+    settings_path = config / "nothing-niri/settings.json"
+    try:
+        settings = json.loads(settings_path.read_text())
+        if not isinstance(settings, dict):
+            raise ValueError('expected a JSON object')
+    except (OSError, ValueError) as error:
+        sys.exit(f"Cannot load Nothing settings: {settings_path}: {error}. Check that --apply completed successfully.")
     environment = os.environ.copy()
     location = settings.get("location", {})
+    if not isinstance(location, dict):
+        sys.exit(f"Invalid location in {settings_path}: expected a JSON object.")
     if location.get("latitude") is not None and location.get("longitude") is not None:
         environment["NOTHING_LATLON"] = f'{location["latitude"]},{location["longitude"]}'
     environment["NOTHING_CITY"] = location.get("city", "")

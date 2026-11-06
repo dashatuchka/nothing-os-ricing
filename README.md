@@ -64,8 +64,11 @@ cd nothing-os-ricing
 Prepare and validate without changing the current session:
 
 ```bash
+python3 scripts/install-nothing.py --doctor
 python3 scripts/install-nothing.py --output "/tmp/nothing-preview-$(date +%s)"
 ```
+
+`--doctor` reports required tools, optional integrations and configuration problems without modifying files. Preview prints the exact install command for your chosen paths and font.
 
 This uses bundled **Doto**, the dot font used by the Glyph reference. For Ndot, see [Fonts](#fonts) before applying.
 
@@ -154,7 +157,9 @@ python3 "${XDG_CONFIG_HOME:-$HOME/.config}/quickshell/nothing/launch.py"
 
 ## Project status
 
-Used on an Arch + Niri laptop. Runtime smoke tests also ran in a nested Arch session with Niri 26.04, Quickshell 0.3.2 and Qt 6.12. Audio, brightness and Bluetooth support depend on your system services. Other distributions have not been validated.
+Used on an Arch + Niri laptop. Automated integration tests also install into an empty profile using the official Niri default config, start the installed shell through Niri autostart, exercise its panels, and verify rollback. Runtime checks use Niri 26.04, Quickshell 0.3.2 and Qt 6.12. Audio, brightness and Bluetooth support still depend on your system services. Other distributions have not been validated.
+
+[Test scope and reproduction](TESTING.md) · [GitHub Actions](https://github.com/dashatuchka/nothing-os-ricing/actions/workflows/checks.yml)
 
 Run the dependency-free Python checks:
 
