@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Patch the user's inspected Serpentinum revision; preview by default."""
 import argparse
 import datetime
