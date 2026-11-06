@@ -1,0 +1,36 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Python checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest discover -s tests -v
+
+  arch:
+    name: Stock Arch + Niri installation and autostart
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Install, start, exercise panels, and restore in an isolated user profile
+        run: |
+          docker run --rm --volume "$GITHUB_WORKSPACE:/work:ro" --workdir /work archlinux:base bash -euc '
+            pacman --disable-sandbox -Syu --noconfirm niri quickshell python fontconfig curl swaylock weston mesa dbus
+            useradd --create-home smoketest
+            runuser -u smoketest -- env NOTHING_ARCH_INTEGRATION=1 NOTHING_ARCH_RUNTIME=1 PYTHONPYCACHEPREFIX=/tmp/nothing-ci-cache python3 -m unittest discover -s tests -v
+          '
