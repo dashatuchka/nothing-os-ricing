@@ -1,0 +1,13 @@
+color=101010
+font=JetBrains Mono
+indicator-radius=80
+indicator-thickness=4
+inside-color=191919
+ring-color=eeeeee
+key-hl-color=888888
+line-color=101010
+separator-color=101010
+text-color=eeeeee
+inside-wrong-color=eeeeee
+ring-wrong-color=eeeeee
+text-wrong-color=101010
