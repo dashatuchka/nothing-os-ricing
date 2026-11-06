@@ -1,0 +1,49 @@
+{
+  "theme": {
+    "fontFamily": "JetBrains Mono",
+    "borderRadius": 24,
+    "matugen": false,
+    "activePreset": "Obsidian",
+    "elementOpacity": 100,
+    "blurBackground": false,
+    "colors": {
+      "base": "#101010",
+      "mantle": "#0b0b0b",
+      "crust": "#000000",
+      "surface0": "#191919",
+      "surface1": "#262626",
+      "surface2": "#383838",
+      "text": "#eeeeee",
+      "subtext0": "#a0a0a0",
+      "subtext1": "#c0c0c0",
+      "overlay0": "#5a5a5a",
+      "overlay1": "#7a7a7a",
+      "overlay2": "#9a9a9a",
+      "maroon": "#aaaaaa",
+      "pink": "#dddddd",
+      "teal": "#cccccc",
+      "yellow": "#eeeeee",
+      "mauve": "#eeeeee",
+      "blue": "#d0d0d0",
+      "sapphire": "#cccccc",
+      "green": "#eeeeee",
+      "peach": "#cccccc",
+      "red": "#ffffff"
+    }
+  },
+  "bar": {
+    "position": "top",
+    "width": 100,
+    "opacity": 100,
+    "style": "modular",
+    "distinctPills": true,
+    "autohide": false,
+    "workspacesStyle": "pills",
+    "time": { "format": "HH:mm" },
+    "modules": {
+      "left": ["left", "workspaces", "media"],
+      "center": ["timedate"],
+      "right": ["tray", ["kb", "wifi", "vol", "bat"]]
+    }
+  }
+}
